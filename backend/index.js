@@ -13,9 +13,10 @@ let users = [];
 
 // Register
 app.post('/api/register', (req, res) => {
-  const email = req.body.email
-  const password = req.body.password
-//   const { username, email, password } = req.body; // to delete if works
+  // const email = req.body.email
+  // const password = req.body.password
+  const { email, password } = req.body;
+  console.log(req.body)
   if (!email || !password) {
     return res.status(400).json({ message: 'Missing params' });
   }
@@ -27,15 +28,15 @@ app.post('/api/register', (req, res) => {
   }
 
   // Add user
-  users.push({ username, email, password });
+  users.push({ email, password });
   return res.status(201).json({ message: 'User registered successfully' }); // 201 means new resource is created successfully
 });
 
 // Login endpoint
 app.post('/api/login', (req, res) => {
-  const email = req.body.email
-  const password = req.body.password
-  //const { email, password } = req.body; // to delete later
+  // const email = req.body.email
+  // const password = req.body.password
+  const { email, password } = req.body; // to delete later
   const user = users.find(user => user.email === email && user.password === password);
 
   if (!user) {

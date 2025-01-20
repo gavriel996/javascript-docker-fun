@@ -5,17 +5,20 @@ start: start-docker-compose
 full: build start-docker-compose
 
 start-docker-compose:
-	docker-compose up -d
+	cd backend ;\
+    docker compose up -d
 
 clean: stop delete-docker-image
 
 stop:
-	docker-compose down
+	cd backend ;\
+	docker compose down
 
 delete-docker-image:
 	docker rmi backend:backend
 
 build:
+	cd backend ;\
 	docker build -t backend:backend .
 
 run-on-basic-container-test:
