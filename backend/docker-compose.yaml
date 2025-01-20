@@ -1,0 +1,11 @@
+version: '1.0.0'
+services:
+  backend:
+    image: backend:backend # built from jenkins/jenkins:2.375.1-lts-alpine
+    # privileged: true
+    # user: root
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+    container_name: backend-backend

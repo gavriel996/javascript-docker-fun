@@ -6,8 +6,9 @@ COPY . /usr/src/app
 # COPY package-lock.json .
 RUN npm install
 # test before and after to see its working
-RUN env
-RUN export .env
+# RUN env
+# RUN export .env
+# Docker-compose.yaml will deploy the .env file
 RUN env
 RUN node --version
 CMD "npm" "start"
