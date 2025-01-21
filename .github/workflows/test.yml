@@ -39,10 +39,10 @@ jobs:
         uses: browser-actions/setup-chrome@v1
         continue-on-error: false
 
-    #   - name: Install testcafe globaly
-    #     continue-on-error: false
-    #     working-directory: ./backend
-    #     run: npm install -g testcafe
+      - name: Install testcafe globaly
+        continue-on-error: false
+        working-directory: ./backend
+        run: npm install -g testcafe
 
       - name: Build and tag Docker image
         continue-on-error: false
