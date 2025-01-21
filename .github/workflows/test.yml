@@ -2,6 +2,7 @@ name: Run api server
 on:
   push:
     branches:
+      - main
       - master
 jobs:
   build-and-publish:
