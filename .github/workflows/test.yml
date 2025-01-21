@@ -5,7 +5,7 @@ on:
       - main
       - master
 jobs:
-  build-and-publish:
+  build-run-test:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
@@ -50,9 +50,16 @@ jobs:
     #     continue-on-error: false
     #     run: npm start
 
+      - name: Run tests on chrome with testcafe
+        working-directory: ./backend
+        continue-on-error: false
+        run: docker exec backend-backend testcafe chrome tests/login_test.js
+
     #   - name: Run tests
+    #     working-directory: ./backend
     #     continue-on-error: false
-    #     run: npm test
+    #     run: docker exec backend-backend npm test
+
       - name: Cleanup
         working-directory: ./backend
         continue-on-error: true
