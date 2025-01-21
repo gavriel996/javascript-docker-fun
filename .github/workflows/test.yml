@@ -61,7 +61,7 @@ jobs:
       - name: Run tests on chrome with testcafe
         working-directory: ./backend/tests
         continue-on-error: false
-        run: testcafe "chrome:headless" login_test.js
+        run: testcafe "chrome:headless" login-test.js
 
     # run: docker exec backend-backend testcafe "chrome:headless" chrome tests/login_test.js  # for tests inside the container
     # run: docker exec backend-backend testcafe chrome tests/login_test.js
