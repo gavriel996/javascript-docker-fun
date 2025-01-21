@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+		h2 { 
+		    text-align: center;
+		}
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+		}
+		.div-input-field{
+			text-align: center;
+			margin: auto;
+		}
+        .input-field {
+            width: 100%;
+			height: 30px;
+            padding-right: 0px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .submit-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+			<div class="div-input-field">
+				<input type="email" id="email" class="input-field" placeholder="Email" required><br>
+				<input type="password" id="password" class="input-field" placeholder="Password" required><br>
+			</div>
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get email and password values
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Prepare data for sending to the API
+            const data = {
+                email: email,
+                password: password
+            };
+
+            // Send data to RESTful API
+            fetch('http://localhost:3000/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    //alert('Login successful');
+					location.href = "www.yoursite.com";
+                    // Redirect or perform other actions here
+                } else {
+                    console.log('Invalid credentials')
+                    //alert('Invalid credentials');
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                //alert('Error occurred, please try again');
+				//location.replace("https://www.w3schools.com")  // redirect to another url
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "testcafe chrome tests/login-page.visual.test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "testcafe": "^3.7.1"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
