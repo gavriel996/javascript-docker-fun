@@ -1,0 +1,62 @@
+name: Run api server
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build-and-publish:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        continue-on-error: false
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        continue-on-error: false
+        with:
+          node-version: 22.13.0
+          registry-url: "https://registry.npmjs.org"
+      - name: Install Docker using Docker's official script
+        continue-on-error: false
+        run: |
+            curl -fsSL https://get.docker.com -o get-docker.sh
+            sudo sh get-docker.sh
+      - name: Install Docker Compose
+        continue-on-error: false
+        run: |
+            sudo curl -L "https://github.com/docker/compose/releases/download/v2.3.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+            sudo chmod +x /usr/local/bin/docker-compose
+            docker-compose --version
+
+    #   - name: Install dependencies
+    #     continue-on-error: false
+    #     working-directory: ./backend
+    #     run: npm install
+
+      - name: Build and tag Docker image
+        continue-on-error: false
+        working-directory: ./backend
+        run: |
+          docker build -t backend:backend .
+
+      - name: Start application-specific services using Docker Compose
+        working-directory: ./backend
+        continue-on-error: false
+        run: docker-compose up -d
+
+    #   - name: Start the project
+    #     continue-on-error: false
+    #     run: npm start
+
+    #   - name: Run tests
+    #     continue-on-error: false
+    #     run: npm test
+      - name: Cleanup
+        working-directory: ./backend
+        continue-on-error: true
+        run: |
+          docker-compose down
+          docker rmi backend:backend
+     
+    
