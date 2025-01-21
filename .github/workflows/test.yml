@@ -35,6 +35,15 @@ jobs:
     #     working-directory: ./backend
     #     run: npm install
 
+      - name: Install chrome
+        uses: browser-actions/setup-chrome@v1
+        continue-on-error: false
+
+    #   - name: Install testcafe globaly
+    #     continue-on-error: false
+    #     working-directory: ./backend
+    #     run: npm install -g testcafe
+
       - name: Build and tag Docker image
         continue-on-error: false
         working-directory: ./backend
@@ -53,7 +62,9 @@ jobs:
       - name: Run tests on chrome with testcafe
         working-directory: ./backend
         continue-on-error: false
-        run: docker exec backend-backend testcafe chrome tests/login_test.js
+        run: testcafe "chrome:headless" chrome tests/login_test.js
+    # run: docker exec backend-backend testcafe "chrome:headless" chrome tests/login_test.js  # for tests inside the container
+    # run: docker exec backend-backend testcafe chrome tests/login_test.js
 
     #   - name: Run tests
     #     working-directory: ./backend
