@@ -1,7 +1,6 @@
 ```sh
 ## fun with javascript
 ### How to operate
-```
 create full env (build, run)
 ```
 make full
@@ -13,7 +12,6 @@ make stop
 stop and clean everything: 
 ```
 make clean
-```
 ```
 ### Common problems in installation
 If you can't run make and get ```invalid active developer path, missing xcrun```
