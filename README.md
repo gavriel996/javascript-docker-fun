@@ -1,4 +1,3 @@
-```sh
 ## fun with javascript
 ### How to operate
 create full env (build, run)
@@ -23,5 +22,4 @@ xcode-select --install
 - frontend not running during make full yet
 - need to add frontend tests to make full
 - need to create a seperate github action for frontend.
-```
 ```
