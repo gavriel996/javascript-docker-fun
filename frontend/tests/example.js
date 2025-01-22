@@ -14,7 +14,7 @@ const loginButton = Selector('button[href=login.html][id=loginButton]');
 fixture('Check localhost login')
     .page('http://localhost:5000/login.html');
 
-test('Check for valid response', async t => {
+test('Functionality test for login', async t => {
     await t
         .typeText(emailInput, 'ricardo@gmail.com')
         .typeText(passwordInput, '1234')
